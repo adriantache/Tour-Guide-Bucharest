@@ -18,9 +18,13 @@ public class LocationPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
+                return new FoodFragment();
             case 1:
+                return new FunFragment();
             case 2:
+                return new DrinksFragment();
             case 3:
+                return new SightsFragment();
             default:
                 return null;
         }
