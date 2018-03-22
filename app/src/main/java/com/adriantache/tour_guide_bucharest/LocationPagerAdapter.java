@@ -5,7 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 /**
- * Created by TREE on 20/03/2018.
+ *
+ * Custom PagerAdapter to manage the Fragments
+ *
  */
 
 public class LocationPagerAdapter extends FragmentPagerAdapter {
@@ -25,6 +27,22 @@ public class LocationPagerAdapter extends FragmentPagerAdapter {
                 return new DrinksFragment();
             case 3:
                 return new SightsFragment();
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return "Food";
+            case 1:
+                return "Fun";
+            case 2:
+                return "Drinks";
+            case 3:
+                return "Sights";
             default:
                 return null;
         }
