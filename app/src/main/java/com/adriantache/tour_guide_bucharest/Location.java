@@ -10,10 +10,10 @@ public class Location {
     private int photoResID;
     private String name;
     private String address;
-    private int phone;
+    private String phone;
 
 
-    public Location(String type, int photoResID, String name, String address, int phone) {
+    public Location(String type, int photoResID, String name, String address, String phone) {
         this.type = type;
         this.photoResID = photoResID;
         this.name = name;
@@ -37,7 +37,7 @@ public class Location {
         return address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 }

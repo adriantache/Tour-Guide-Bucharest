@@ -40,6 +40,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
+            android:textSize="12sp"
             android:fontFamily="monospace"
             tools:text="Bulevardul Regina Elisabeta 29-31" />
 
@@ -55,7 +56,6 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="call"
         app:srcCompat="@drawable/ic_call_black_48dp" />
 
 </RelativeLayout>

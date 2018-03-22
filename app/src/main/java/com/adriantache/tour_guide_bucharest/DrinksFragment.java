@@ -3,10 +3,16 @@ package com.adriantache.tour_guide_bucharest;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +34,17 @@ public class DrinksFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ArrayList<Location> drinksArray = new ArrayList<>();
+    ListView listView;
+    LocationArrayAdapter arrayAdapter;
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        listView = view.findViewById(R.id.list_view);
+        listView.setAdapter(arrayAdapter);
+        super.onViewCreated(view, savedInstanceState);
+    }
 
     public DrinksFragment() {
         // Required empty public constructor
@@ -58,6 +75,21 @@ public class DrinksFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        populateArray();
+    }
+
+    private void populateArray(){
+        String type = "Drinks";
+
+        drinksArray.add(new Location(type,R.drawable.shift,"Shift","Strada General Eremia Grigorescu 17","004 021 211 2272"));
+        drinksArray.add(new Location(type,R.drawable.ota,"Ota","Strada Doctor Niculae D. Staicovici 26","004 0721 840 723"));
+        drinksArray.add(new Location(type,R.drawable.gambrinus,"Gambrinus","Bulevardul Regina Elisabeta 38","004 0731 422 181"));
+        drinksArray.add(new Location(type,R.drawable.manasia,"Manasia","Strada Stelea Spătarul 13","004 0736 787 885"));
+        drinksArray.add(new Location(type,R.drawable.la_100_beri,"100 Beri","Strada Covaci 8","004 0372 963 543"));
+
+        arrayAdapter = new LocationArrayAdapter(getContext(),drinksArray);
+
     }
 
     @Override
@@ -105,4 +137,9 @@ public class DrinksFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public void call(View view){
+        //do nothing
+    }
+
 }
