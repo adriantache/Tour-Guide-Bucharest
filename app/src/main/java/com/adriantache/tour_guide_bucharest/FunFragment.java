@@ -3,10 +3,14 @@ package com.adriantache.tour_guide_bucharest;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -22,12 +26,13 @@ public class FunFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    ListView listView;
+    LocationArrayAdapter arrayAdapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
+    private ArrayList<Location> funArray = new ArrayList<>();
 
     public FunFragment() {
         // Required empty public constructor
@@ -52,12 +57,33 @@ public class FunFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        listView = view.findViewById(R.id.list_view);
+        listView.setAdapter(arrayAdapter);
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        populateArray();
+    }
+
+    private void populateArray() {
+        String type = "Fun";
+
+        funArray.add(new Location(type, R.drawable.expirat, "Expirat", "Doctor Constantin Istrati 1", "004 0733 974 728"));
+        funArray.add(new Location(type,R.drawable.manasia,"Manasia","Stelea Spătarul 13","004 0736 787 885"));
+        funArray.add(new Location(type, R.drawable.imax, "IMAX", "Vasile Milea 4", "004 021 407 0000"));
+        funArray.add(new Location(type, R.drawable.idm_club, "IDM Club", "Splaiul Independenței 319", "004 0722 454 273"));
+        funArray.add(new Location(type, R.drawable.mojo, "Mojo", "Gabroveni 14", "004 0737 220 220"));
+
+        arrayAdapter = new LocationArrayAdapter(getContext(), funArray);
+
     }
 
     @Override

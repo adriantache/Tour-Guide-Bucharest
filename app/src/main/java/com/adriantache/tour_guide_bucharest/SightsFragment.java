@@ -3,10 +3,14 @@ package com.adriantache.tour_guide_bucharest;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +32,17 @@ public class SightsFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ArrayList<Location> sightsArray = new ArrayList<>();
+    ListView listView;
+    LocationArrayAdapter arrayAdapter;
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        listView = view.findViewById(R.id.list_view);
+        listView.setAdapter(arrayAdapter);
+        super.onViewCreated(view, savedInstanceState);
+    }
 
     public SightsFragment() {
         // Required empty public constructor
@@ -58,6 +73,20 @@ public class SightsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        populateArray();
+    }
+
+    private void populateArray() {
+        String type = "Sights";
+
+        sightsArray.add(new Location(type, R.drawable.casa_poporului, "Casa Poporului", "Izvor 2-4", "004 021 316 0300"));
+        sightsArray.add(new Location(type,R.drawable.arcul_de_triumf,"Arcul de Triumf","Piața Arcul de Triumf","004 0787 584 104"));
+        sightsArray.add(new Location(type, R.drawable.ateneu, "Ateneul Roman", "Benjamin Franklin 1-3", "004 021 315 2567"));
+        sightsArray.add(new Location(type, R.drawable.mnac, "MNAC", "Izvor 2-4", "004 021 318 9137"));
+        sightsArray.add(new Location(type, R.drawable.muzeul_taranului, "Muzeul Taranului", "Pavel Dimitrievici Kiseleff 3", "004 021 317 9661"));
+
+        arrayAdapter = new LocationArrayAdapter(getContext(), sightsArray);
+
     }
 
     @Override

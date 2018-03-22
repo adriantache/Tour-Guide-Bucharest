@@ -3,10 +3,14 @@ package com.adriantache.tour_guide_bucharest;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -19,6 +23,17 @@ import android.view.ViewGroup;
  */
 public class FoodFragment extends Fragment {
      private OnFragmentInteractionListener mListener;
+
+    private ArrayList<Location> foodArray = new ArrayList<>();
+    ListView listView;
+    LocationArrayAdapter arrayAdapter;
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        listView = view.findViewById(R.id.list_view);
+        listView.setAdapter(arrayAdapter);
+        super.onViewCreated(view, savedInstanceState);
+    }
 
     public FoodFragment() {
         // Required empty public constructor
@@ -36,6 +51,20 @@ public class FoodFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        populateArray();
+    }
+
+    private void populateArray(){
+        String type = "Food";
+
+        foodArray.add(new Location(type,R.drawable.tormen,"Tormen","Regina Elisabeta 29-31","004 021 315 8615"));
+        foodArray.add(new Location(type,R.drawable.atlantic,"Atlantic","Drumul Sării 8","004 0764 687 270"));
+        foodArray.add(new Location(type,R.drawable.shift,"Shift","General Eremia Grigorescu 17","004 021 211 2272"));
+        foodArray.add(new Location(type,R.drawable.don_vito,"Don Vito","D. I. Mendeleev 1","004 0733 333 021"));
+        foodArray.add(new Location(type,R.drawable.toans,"Toan's","General Gheorghe Magheru 12-14","004 0737 053 128"));
+
+        arrayAdapter = new LocationArrayAdapter(getContext(),foodArray);
+
     }
 
     @Override
