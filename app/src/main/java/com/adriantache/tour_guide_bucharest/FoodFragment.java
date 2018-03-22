@@ -55,13 +55,13 @@ public class FoodFragment extends Fragment {
     }
 
     private void populateArray(){
-        String type = "Food";
+        String type = getString(R.string.food);
 
-        foodArray.add(new Location(type,R.drawable.tormen,"Tormen","Regina Elisabeta 29-31","004 021 315 8615"));
-        foodArray.add(new Location(type,R.drawable.atlantic,"Atlantic","Drumul Sării 8","004 0764 687 270"));
-        foodArray.add(new Location(type,R.drawable.shift,"Shift","General Eremia Grigorescu 17","004 021 211 2272"));
-        foodArray.add(new Location(type,R.drawable.don_vito,"Don Vito","D. I. Mendeleev 1","004 0733 333 021"));
-        foodArray.add(new Location(type,R.drawable.toans,"Toan's","General Gheorghe Magheru 12-14","004 0737 053 128"));
+        foodArray.add(new Location(type,R.drawable.tormen,getString(R.string.tormen),getString(R.string.address_tm),getString(R.string.phone_tm)));
+        foodArray.add(new Location(type,R.drawable.atlantic,getString(R.string.atlantic),getString(R.string.address_atl),getString(R.string.phone_atl)));
+        foodArray.add(new Location(type,R.drawable.shift,getString(R.string.shift),getString(R.string.address_shift),getString(R.string.phone_shift)));
+        foodArray.add(new Location(type,R.drawable.don_vito,getString(R.string.don_vito),getString(R.string.address_dv),getString(R.string.phone_dv)));
+        foodArray.add(new Location(type,R.drawable.toans,getString(R.string.toans),getString(R.string.address_tn),getString(R.string.phone_tn)));
 
         arrayAdapter = new LocationArrayAdapter(getContext(),foodArray);
 

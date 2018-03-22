@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <ImageView
+        android:contentDescription="@string/logo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
@@ -16,7 +17,7 @@
         android:layout_height="wrap_content"
         android:background="#3E2723"
         android:padding="4dp"
-        android:text="click on a location to open its Google Maps page"
+        android:text="@string/location_instructions"
         android:textAlignment="center"
         android:textColor="#fff" />
 
@@ -30,6 +31,4 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="72dp" />
-
-
 </LinearLayout>

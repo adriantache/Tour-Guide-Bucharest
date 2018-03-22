@@ -80,13 +80,13 @@ public class DrinksFragment extends Fragment {
     }
 
     private void populateArray(){
-        String type = "Drinks";
+        String type = getString(R.string.drinks);
 
-        drinksArray.add(new Location(type,R.drawable.shift,"Shift","General Eremia Grigorescu 17","004 021 211 2272"));
-        drinksArray.add(new Location(type,R.drawable.ota,"Ota","Doctor Niculae D. Staicovici 26","004 0721 840 723"));
-        drinksArray.add(new Location(type,R.drawable.gambrinus,"Gambrinus","Regina Elisabeta 38","004 0731 422 181"));
-        drinksArray.add(new Location(type,R.drawable.manasia,"Manasia","Stelea Spătarul 13","004 0736 787 885"));
-        drinksArray.add(new Location(type,R.drawable.la_100_beri,"100 Beri","Covaci 8","004 0372 963 543"));
+        drinksArray.add(new Location(type,R.drawable.shift,getString(R.string.shift),getString(R.string.address_shift),getString(R.string.phone_shift)));
+        drinksArray.add(new Location(type,R.drawable.ota,getString(R.string.ota),getString(R.string.address_ota),getString(R.string.phone_ota)));
+        drinksArray.add(new Location(type,R.drawable.gambrinus,getString(R.string.gambrinus),getString(R.string.address_gmb),getString(R.string.phone_gmb)));
+        drinksArray.add(new Location(type,R.drawable.manasia,getString(R.string.manasia),getString(R.string.address_mn),getString(R.string.phone_mn)));
+        drinksArray.add(new Location(type,R.drawable.la_100_beri,getString(R.string.la_100_beri),getString(R.string.address_100),getString(R.string.phone_100)));
 
         arrayAdapter = new LocationArrayAdapter(getContext(),drinksArray);
 

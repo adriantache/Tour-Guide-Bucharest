@@ -74,13 +74,13 @@ public class FunFragment extends Fragment {
     }
 
     private void populateArray() {
-        String type = "Fun";
+        String type = getString(R.string.fun);
 
-        funArray.add(new Location(type, R.drawable.expirat, "Expirat", "Doctor Constantin Istrati 1", "004 0733 974 728"));
-        funArray.add(new Location(type,R.drawable.manasia,"Manasia","Stelea Spătarul 13","004 0736 787 885"));
-        funArray.add(new Location(type, R.drawable.imax, "IMAX", "Vasile Milea 4", "004 021 407 0000"));
-        funArray.add(new Location(type, R.drawable.idm_club, "IDM Club", "Splaiul Independenței 319", "004 0722 454 273"));
-        funArray.add(new Location(type, R.drawable.mojo, "Mojo", "Gabroveni 14", "004 0737 220 220"));
+        funArray.add(new Location(type, R.drawable.expirat, getString(R.string.expirat), getString(R.string.address_exp), getString(R.string.phone_exp)));
+        funArray.add(new Location(type,R.drawable.manasia,getString(R.string.manasia),getString(R.string.address_mn),getString(R.string.phone_mn)));
+        funArray.add(new Location(type, R.drawable.imax, getString(R.string.imax), getString(R.string.address_imax), getString(R.string.phone_imax)));
+        funArray.add(new Location(type, R.drawable.idm_club, getString(R.string.idm), getString(R.string.address_idm), getString(R.string.phone_idm)));
+        funArray.add(new Location(type, R.drawable.mojo, getString(R.string.mojo), getString(R.string.address_mojo), getString(R.string.phone_mojo)));
 
         arrayAdapter = new LocationArrayAdapter(getContext(), funArray);
 

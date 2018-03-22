@@ -26,23 +26,13 @@ public class SightsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    ListView listView;
+    LocationArrayAdapter arrayAdapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
-
     private ArrayList<Location> sightsArray = new ArrayList<>();
-    ListView listView;
-    LocationArrayAdapter arrayAdapter;
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        listView = view.findViewById(R.id.list_view);
-        listView.setAdapter(arrayAdapter);
-        super.onViewCreated(view, savedInstanceState);
-    }
 
     public SightsFragment() {
         // Required empty public constructor
@@ -67,23 +57,31 @@ public class SightsFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        listView = view.findViewById(R.id.list_view);
+        listView.setAdapter(arrayAdapter);
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
         populateArray();
     }
 
     private void populateArray() {
-        String type = "Sights";
+        String type = getString(R.string.sights);
 
-        sightsArray.add(new Location(type, R.drawable.casa_poporului, "Casa Poporului", "Izvor 2-4", "004 021 316 0300"));
-        sightsArray.add(new Location(type,R.drawable.arcul_de_triumf,"Arcul de Triumf","Piața Arcul de Triumf","004 0787 584 104"));
-        sightsArray.add(new Location(type, R.drawable.ateneu, "Ateneul Roman", "Benjamin Franklin 1-3", "004 021 315 2567"));
-        sightsArray.add(new Location(type, R.drawable.mnac, "MNAC", "Izvor 2-4", "004 021 318 9137"));
-        sightsArray.add(new Location(type, R.drawable.muzeul_taranului, "Muzeul Taranului", "Pavel Dimitrievici Kiseleff 3", "004 021 317 9661"));
+        sightsArray.add(new Location(type, R.drawable.casa_poporului, getString(R.string.casa_poporului), getString(R.string.address_cp), getString(R.string.phone_cp)));
+        sightsArray.add(new Location(type, R.drawable.arcul_de_triumf, getString(R.string.arcul_de_triumf), getString(R.string.address_at), getString(R.string.phone_at)));
+        sightsArray.add(new Location(type, R.drawable.ateneu, getString(R.string.ateneu), getString(R.string.address_atn), getString(R.string.phone_atn)));
+        sightsArray.add(new Location(type, R.drawable.mnac, getString(R.string.mnac), getString(R.string.address_mnac), getString(R.string.phone_mnac)));
+        sightsArray.add(new Location(type, R.drawable.muzeul_taranului, getString(R.string.muzeul_taranului), getString(R.string.address_mt), getString(R.string.phone_mt)));
 
         arrayAdapter = new LocationArrayAdapter(getContext(), sightsArray);
 

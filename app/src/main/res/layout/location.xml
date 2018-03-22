@@ -43,7 +43,6 @@
             android:gravity="center_vertical"
             android:textSize="12sp"
             tools:text="Bulevardul Regina Elisabeta 29-31" />
-
     </LinearLayout>
 
     <ImageView
@@ -60,5 +59,4 @@
         android:contentDescription="@string/call_button"
         android:focusable="true"
         app:srcCompat="@drawable/ic_call_black_48dp" />
-
 </RelativeLayout>
