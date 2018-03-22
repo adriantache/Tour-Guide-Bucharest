@@ -27,7 +27,8 @@ public class LocationArrayAdapter extends ArrayAdapter<Location> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Location location = getItem(position);
 
-        if (convertView == null) convertView = LayoutInflater.from(getContext()).inflate(R.layout.location,parent,false);
+        if (convertView == null)
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.location, parent, false);
 
         ImageView imageView = convertView.findViewById(R.id.location_image);
         imageView.setImageResource(location.getPhotoResID());
@@ -36,8 +37,10 @@ public class LocationArrayAdapter extends ArrayAdapter<Location> {
         name.setText(location.getName());
 
         TextView address = convertView.findViewById(R.id.address);
-        address.setText(location.getAddress());
-        
+        String addressText = location.getAddress();
+        if (addressText.length() > 30) addressText = addressText.substring(0, 27) + "...";
+        address.setText(addressText);
+
         return convertView;
     }
 }
