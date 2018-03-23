@@ -12,19 +12,22 @@
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/header" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#3E2723"
-        android:padding="4dp"
-        android:text="@string/location_instructions"
-        android:textAlignment="center"
-        android:textColor="#fff" />
-
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="72dp" />
+        android:layout_height="72dp"
+        android:elevation="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFA000"
+        android:padding="4dp"
+        android:textStyle="italic"
+        android:textSize="12sp"
+        android:text="@string/location_instructions"
+        android:textAlignment="center"
+        android:textColor="#F5F5F5" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

@@ -14,10 +14,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-
 /**
  * Fragment to hold the food locations
  */
+
 public class FoodFragment extends Fragment {
      private OnFragmentInteractionListener mListener;
 
