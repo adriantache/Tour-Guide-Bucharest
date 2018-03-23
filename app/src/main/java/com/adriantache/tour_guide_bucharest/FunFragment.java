@@ -1,6 +1,7 @@
 package com.adriantache.tour_guide_bucharest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,18 +9,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FunFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FunFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment to hold the fun locations
  */
 public class FunFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -60,6 +57,32 @@ public class FunFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         listView = view.findViewById(R.id.list_view);
         listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //todo fix not detecting click on call button problem :(
+                if (view.getId() == R.id.call_button) {
+                    String phoneNumber = funArray.get(position).getPhone();
+
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + phoneNumber));
+                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+                } else {
+                    String address = "geo:0,0?q=" +funArray.get(position).getName()+" "+funArray.get(position).getAddress() + ", Bucuresti";
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(address));
+                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
+
         super.onViewCreated(view, savedInstanceState);
     }
 

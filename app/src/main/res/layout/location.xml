@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/location_relative_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,6 +17,7 @@
         tools:src="@tools:sample/avatars" />
 
     <LinearLayout
+        android:id="@+id/location_linear_layout"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
@@ -47,16 +49,14 @@
 
     <ImageView
         android:id="@+id/call_button"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignBottom="@id/location_image"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_alignTop="@id/location_image"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:clickable="true"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
         android:contentDescription="@string/call_button"
-        android:focusable="true"
         app:srcCompat="@drawable/ic_call_black_48dp" />
 </RelativeLayout>
