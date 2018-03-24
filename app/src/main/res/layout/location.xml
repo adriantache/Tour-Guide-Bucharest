@@ -46,14 +46,15 @@
 
     <ImageView
         android:id="@+id/call_button"
-        android:layout_width="40dp"
+        android:layout_width="88dp"
         android:layout_height="40dp"
         android:layout_alignBottom="@id/location_image"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_alignTop="@id/location_image"
         android:contentDescription="@string/call_button"
-        android:paddingEnd="16dp"
-        android:paddingTop="16dp"
+        android:paddingEnd="32dp"
+        android:paddingStart="32dp"
+        android:paddingTop="8dp"
         app:srcCompat="@drawable/ic_call_black_48dp" />
 </RelativeLayout>
