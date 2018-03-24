@@ -1,8 +1,13 @@
-package com.adriantache.tour_guide_bucharest;
+package com.adriantache.tour_guide_bucharest.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.adriantache.tour_guide_bucharest.DrinksFragment;
+import com.adriantache.tour_guide_bucharest.FoodFragment;
+import com.adriantache.tour_guide_bucharest.FunFragment;
+import com.adriantache.tour_guide_bucharest.SightsFragment;
 
 /**
  *
@@ -12,7 +17,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class LocationPagerAdapter extends FragmentPagerAdapter {
 
-    LocationPagerAdapter(FragmentManager fm) {
+    public LocationPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

@@ -1,4 +1,4 @@
-package com.adriantache.tour_guide_bucharest;
+package com.adriantache.tour_guide_bucharest.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.adriantache.tour_guide_bucharest.Location;
+import com.adriantache.tour_guide_bucharest.R;
+
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ import java.util.List;
 
 public class LocationArrayAdapter extends ArrayAdapter<Location> {
 
-    LocationArrayAdapter(@NonNull Context context, @NonNull List<Location> objects) {
+    public LocationArrayAdapter(@NonNull Context context, @NonNull List<Location> objects) {
         super(context, 0, objects);
     }
 
@@ -31,15 +34,17 @@ public class LocationArrayAdapter extends ArrayAdapter<Location> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.location, parent, false);
 
         ImageView imageView = convertView.findViewById(R.id.location_image);
-        imageView.setImageResource(location.getPhotoResID());
+        if (location != null) imageView.setImageResource(location.getPhotoResID());
 
         TextView name = convertView.findViewById(R.id.name);
-        name.setText(location.getName());
+        if (location != null) name.setText(location.getName());
 
         TextView address = convertView.findViewById(R.id.address);
-        String addressText = location.getAddress();
-        if (addressText.length() > 30) addressText = addressText.substring(0, 27) + "...";
-        address.setText(addressText);
+        if (location != null) {
+            String addressText = location.getAddress();
+            if (addressText.length() > 30) addressText = addressText.substring(0, 27) + "...";
+            address.setText(addressText);
+        }
 
         return convertView;
     }

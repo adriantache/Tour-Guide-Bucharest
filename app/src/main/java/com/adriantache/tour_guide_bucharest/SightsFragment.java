@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.adriantache.tour_guide_bucharest.adapter.LocationArrayAdapter;
+
 import java.util.ArrayList;
 
 /**
