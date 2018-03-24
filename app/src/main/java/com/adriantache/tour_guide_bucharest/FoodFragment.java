@@ -18,8 +18,7 @@ import java.util.ArrayList;
  */
 
 public class FoodFragment extends Fragment {
-    ListView listView;
-    LocationArrayAdapter arrayAdapter;
+    private LocationArrayAdapter arrayAdapter;
     private ArrayList<Location> foodArray = new ArrayList<>();
 
     public FoodFragment() {
@@ -28,7 +27,7 @@ public class FoodFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        listView = view.findViewById(R.id.list_view);
+        ListView listView = view.findViewById(R.id.list_view);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -44,7 +43,7 @@ public class FoodFragment extends Fragment {
                         startActivity(intent);
                     }
                 } else {
-                    String address = "geo:0,0?q=" + foodArray.get(position).getName() + " " + foodArray.get(position).getAddress() + ", Bucuresti";
+                    String address = "geo:0,0?q=" + foodArray.get(position).getName() + ", " + foodArray.get(position).getAddress() + ", Bucuresti";
 
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(address));
