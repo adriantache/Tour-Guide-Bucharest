@@ -25,25 +25,35 @@ public class LocationArrayAdapter extends ArrayAdapter<Location> {
         super(context, 0, objects);
     }
 
+    static class ViewHolder {
+        ImageView imageView;
+        TextView name;
+        TextView address;
+    }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Location location = getItem(position);
+        ViewHolder holder;
 
-        if (convertView == null)
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.location, parent, false);
+            holder = new ViewHolder();
+            holder.imageView = convertView.findViewById(R.id.location_image);
+            holder.name = convertView.findViewById(R.id.name);
+            holder.address = convertView.findViewById(R.id.address);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
-        ImageView imageView = convertView.findViewById(R.id.location_image);
-        if (location != null) imageView.setImageResource(location.getPhotoResID());
-
-        TextView name = convertView.findViewById(R.id.name);
-        if (location != null) name.setText(location.getName());
-
-        TextView address = convertView.findViewById(R.id.address);
+        Location location = getItem(position);
+        if (location != null) holder.imageView.setImageResource(location.getPhotoResID());
+        if (location != null) holder.name.setText(location.getName());
         if (location != null) {
             String addressText = location.getAddress();
             if (addressText.length() > 30) addressText = addressText.substring(0, 27) + "...";
-            address.setText(addressText);
+            holder.address.setText(addressText);
         }
 
         return convertView;
