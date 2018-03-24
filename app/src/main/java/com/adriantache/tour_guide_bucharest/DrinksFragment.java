@@ -31,8 +31,6 @@ public class DrinksFragment extends Fragment {
         ListView listView = view.findViewById(R.id.list_view);
         listView.setAdapter(arrayAdapter);
 
-        listView.
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
