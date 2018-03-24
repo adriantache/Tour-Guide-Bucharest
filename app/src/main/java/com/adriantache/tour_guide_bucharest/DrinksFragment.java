@@ -28,8 +28,10 @@ public class DrinksFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-                ListView listView = view.findViewById(R.id.list_view);
+        ListView listView = view.findViewById(R.id.list_view);
         listView.setAdapter(arrayAdapter);
+
+        listView.
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -48,12 +50,28 @@ public class DrinksFragment extends Fragment {
                     }
                 });
 
-                String address = "geo:0,0?q=" + location.getName() + ", " + location.getAddress() + ", Bucuresti";
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(address));
-                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivity(intent);
-                }
+                view.findViewById(R.id.location_image).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String address = "geo:0,0?q=" + location.getName() + ", " + location.getAddress() + ", Bucuresti";
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(address));
+                        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
+                    }
+                });
+                view.findViewById(R.id.location_linear_layout).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String address = "geo:0,0?q=" + location.getName() + ", " + location.getAddress() + ", Bucuresti";
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(address));
+                        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         });
 
