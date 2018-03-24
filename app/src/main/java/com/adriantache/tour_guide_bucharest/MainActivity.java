@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
-    TabLayout tabLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,14 +14,20 @@ public class MainActivity extends AppCompatActivity {
 
         LocationPagerAdapter locationPagerAdapter = new LocationPagerAdapter(getSupportFragmentManager());
 
-        viewPager = findViewById(R.id.view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(locationPagerAdapter);
 
-        tabLayout = findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_restaurant_black_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_local_play_black_24dp);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_local_drink_black_24dp);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_local_see_black_24dp);
+        if (tabLayout.getTabAt(0) != null) {
+            if (tabLayout.getTabAt(0) != null)
+                tabLayout.getTabAt(0).setIcon(R.drawable.ic_restaurant_black_24dp);
+            if (tabLayout.getTabAt(1) != null)
+                tabLayout.getTabAt(1).setIcon(R.drawable.ic_local_play_black_24dp);
+            if (tabLayout.getTabAt(2) != null)
+                tabLayout.getTabAt(2).setIcon(R.drawable.ic_local_drink_black_24dp);
+            if (tabLayout.getTabAt(3) != null)
+                tabLayout.getTabAt(3).setIcon(R.drawable.ic_local_see_black_24dp);
+        }
     }
 }

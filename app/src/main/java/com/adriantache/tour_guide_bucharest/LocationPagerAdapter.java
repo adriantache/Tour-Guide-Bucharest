@@ -12,7 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class LocationPagerAdapter extends FragmentPagerAdapter {
 
-    public LocationPagerAdapter(FragmentManager fm) {
+    LocationPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

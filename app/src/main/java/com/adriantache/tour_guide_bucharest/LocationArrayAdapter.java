@@ -18,7 +18,7 @@ import java.util.List;
 
 public class LocationArrayAdapter extends ArrayAdapter<Location> {
 
-    public LocationArrayAdapter(@NonNull Context context, @NonNull List<Location> objects) {
+    LocationArrayAdapter(@NonNull Context context, @NonNull List<Location> objects) {
         super(context, 0, objects);
     }
 
