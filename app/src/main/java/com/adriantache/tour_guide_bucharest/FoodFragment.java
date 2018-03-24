@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.adriantache.tour_guide_bucharest.adapter.LocationArrayAdapter;
+
 import java.util.ArrayList;
 
 /**
@@ -19,7 +21,6 @@ import java.util.ArrayList;
 
 public class FoodFragment extends Fragment {
     private LocationArrayAdapter arrayAdapter;
-    private ArrayList<Location> foodArray = new ArrayList<>();
 
     public FoodFragment() {
         // Required empty public constructor
@@ -33,10 +34,12 @@ public class FoodFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                final Location location = (Location) parent.getItemAtPosition(position);
+
                 view.findViewById(R.id.call_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String phoneNumber = foodArray.get(position).getPhone();
+                        String phoneNumber = location.getPhone();
                         Intent intent = new Intent(Intent.ACTION_DIAL);
                         intent.setData(Uri.parse("tel:" + phoneNumber));
                         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -45,7 +48,7 @@ public class FoodFragment extends Fragment {
                     }
                 });
 
-                    String address = "geo:0,0?q=" + foodArray.get(position).getName() + ", " + foodArray.get(position).getAddress() + ", Bucuresti";
+                    String address = "geo:0,0?q=" + location.getName() + ", " + location.getAddress() + ", Bucuresti";
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(address));
                     if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -65,6 +68,7 @@ public class FoodFragment extends Fragment {
     }
 
     private void populateArray() {
+        ArrayList<Location> foodArray = new ArrayList<>();
         String type = getString(R.string.food);
 
         foodArray.add(new Location(type, R.drawable.tormen, getString(R.string.tormen), getString(R.string.address_tm), getString(R.string.phone_tm)));

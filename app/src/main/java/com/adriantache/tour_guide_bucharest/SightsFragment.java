@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 public class SightsFragment extends Fragment {
     private LocationArrayAdapter arrayAdapter;
-    private ArrayList<Location> sightsArray = new ArrayList<>();
 
     public SightsFragment() {
         // Required empty public constructor
@@ -35,10 +34,12 @@ public class SightsFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                final Location location = (Location) parent.getItemAtPosition(position);
+
                 view.findViewById(R.id.call_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String phoneNumber = sightsArray.get(position).getPhone();
+                        String phoneNumber = location.getPhone();
                         Intent intent = new Intent(Intent.ACTION_DIAL);
                         intent.setData(Uri.parse("tel:" + phoneNumber));
                         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -47,7 +48,7 @@ public class SightsFragment extends Fragment {
                     }
                 });
 
-                String address = "geo:0,0?q=" + sightsArray.get(position).getName() + ", " + sightsArray.get(position).getAddress() + ", Bucuresti";
+                String address = "geo:0,0?q=" + location.getName() + ", " + location.getAddress() + ", Bucuresti";
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(address));
                 if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -67,6 +68,8 @@ public class SightsFragment extends Fragment {
     }
 
     private void populateArray() {
+        ArrayList<Location> sightsArray = new ArrayList<>();
+
         String type = getString(R.string.sights);
 
         sightsArray.add(new Location(type, R.drawable.casa_poporului, getString(R.string.casa_poporului), getString(R.string.address_cp), getString(R.string.phone_cp)));

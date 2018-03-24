@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.adriantache.tour_guide_bucharest.adapter.LocationArrayAdapter;
+
 import java.util.ArrayList;
 
 /**
@@ -19,7 +21,6 @@ import java.util.ArrayList;
 
 public class DrinksFragment extends Fragment {
     private LocationArrayAdapter arrayAdapter;
-    private ArrayList<Location> drinksArray = new ArrayList<>();
 
     public DrinksFragment() {
         // Required empty public constructor
@@ -27,16 +28,18 @@ public class DrinksFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ListView listView = view.findViewById(R.id.list_view);
+                ListView listView = view.findViewById(R.id.list_view);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                final Location location = (Location) parent.getItemAtPosition(position);
+
                 view.findViewById(R.id.call_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String phoneNumber = drinksArray.get(position).getPhone();
+                        String phoneNumber = location.getPhone();
                         Intent intent = new Intent(Intent.ACTION_DIAL);
                         intent.setData(Uri.parse("tel:" + phoneNumber));
                         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -45,7 +48,7 @@ public class DrinksFragment extends Fragment {
                     }
                 });
 
-                String address = "geo:0,0?q=" + drinksArray.get(position).getName() + ", " + drinksArray.get(position).getAddress() + ", Bucuresti";
+                String address = "geo:0,0?q=" + location.getName() + ", " + location.getAddress() + ", Bucuresti";
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(address));
                 if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
@@ -65,6 +68,8 @@ public class DrinksFragment extends Fragment {
     }
 
     private void populateArray() {
+        ArrayList<Location> drinksArray = new ArrayList<>();
+
         String type = getString(R.string.drinks);
 
         drinksArray.add(new Location(type, R.drawable.shift, getString(R.string.shift), getString(R.string.address_shift), getString(R.string.phone_shift)));
