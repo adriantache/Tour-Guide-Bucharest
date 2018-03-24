@@ -32,24 +32,24 @@ public class SightsFragment extends Fragment {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //todo fix not detecting click on call button problem :(
-                if (view.getId() == R.id.call_button) {
-                    String phoneNumber = sightsArray.get(position).getPhone();
-
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + phoneNumber));
-                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        startActivity(intent);
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                view.findViewById(R.id.call_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String phoneNumber = sightsArray.get(position).getPhone();
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:" + phoneNumber));
+                        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
                     }
-                } else {
-                    String address = "geo:0,0?q=" + sightsArray.get(position).getName() + ", " + sightsArray.get(position).getAddress() + ", Bucuresti";
+                });
 
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(address));
-                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        startActivity(intent);
-                    }
+                String address = "geo:0,0?q=" + sightsArray.get(position).getName() + ", " + sightsArray.get(position).getAddress() + ", Bucuresti";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(address));
+                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(intent);
                 }
             }
         });
