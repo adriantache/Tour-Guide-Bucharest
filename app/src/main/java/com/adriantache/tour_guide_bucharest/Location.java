@@ -5,13 +5,11 @@ package com.adriantache.tour_guide_bucharest;
  */
 
 public class Location {
-
     private String type;
     private int photoResID;
     private String name;
     private String address;
     private String phone;
-
 
     public Location(String type, int photoResID, String name, String address, String phone) {
         this.type = type;
